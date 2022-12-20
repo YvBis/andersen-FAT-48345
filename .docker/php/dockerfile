@@ -1,0 +1,41 @@
+FROM composer:latest AS composer
+FROM php:8.1-apache
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+WORKDIR /var/www/laravel
+
+RUN set -ex ;\
+    apt-get update;\
+    apt-get install -y \
+    libicu-dev\
+    openssl \
+    git \
+    unzip\
+    libzip-dev \
+    zip \
+    libfreetype6-dev\
+    libwebp-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev libxpm-dev \
+    gawk\
+    libgd3\
+    libgd-dev\
+    libxmlb-dev\
+    libxml2-dev\
+    nano;
+
+RUN set -ex docker-php-ext-install intl xml pdo pdo_mysql exif gd soap zip opcache bcmath
+RUN set -ex  docker-php-ext-configure zip
+RUN set -ex docker-php-ext-enable intl xml pdo pdo_mysql exif gd soap zip opcache bcmath
+
+RUN set -ex ;\
+    a2enmod rewrite;\
+    a2enmod ssl;\
+    a2enmod socache_shmcb;
+
+
+COPY ./conf.d/* /usr/local/etc/php/conf.d/
+COPY ./php.ini /usr/local/etc/php

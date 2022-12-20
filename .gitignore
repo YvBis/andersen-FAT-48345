@@ -16,3 +16,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.history
+/.docker/php/apache/apache2_logs/*
+!/.docker/.env
+
