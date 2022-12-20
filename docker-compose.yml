@@ -5,6 +5,7 @@ services:
   php-apache:
     build: ./.docker/php
     user: "1000:1000"
+    container_name: php-apache
     volumes:
       - ./.docker/php/apache/apache2_logs:/var/log/apache2
       - type: bind
@@ -23,6 +24,7 @@ services:
 
   mysql:
     image: mysql:5.7
+    container_name: mysql
     restart: always
     ports:
       - 127.0.0.1:3308:3306
@@ -39,6 +41,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
     ports:
       - 8900:80
     networks:
