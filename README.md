@@ -16,7 +16,7 @@
 ```
 4. Install composer dependencies
 ```shell
-   docker exec -u $(shell id -u) andersen-php composer install
+   docker exec php-apache composer install
 ```  
 5. Go to
 `http://127.0.0.1:8080`
