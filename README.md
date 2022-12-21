@@ -14,9 +14,16 @@
 ```shell
     docker-compose up -d
 ```
-4. Install composer dependencies
+4. Set permissions
+```shell 
+    docker exec php-apache chmod -R 755 bootstrap/cache
+```
+```shell 
+    docker exec php-apache chmod -R 755 storage
+```
+5. Install composer dependencies
 ```shell
    docker exec php-apache composer install
 ```  
-5. Go to
+1. Go to
 `http://127.0.0.1:8080`
