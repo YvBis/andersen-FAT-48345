@@ -27,9 +27,32 @@ RUN set -ex ;\
     libxml2-dev\
     nano;
 
-RUN set -ex docker-php-ext-install intl xml pdo pdo_mysql exif gd soap zip opcache bcmath
+RUN set -ex ;\
+docker-php-ext-install \
+intl \
+xml \
+pdo \
+pdo_mysql \
+exif \
+gd \
+soap \
+zip \
+opcache \
+bcmath;
+
 RUN set -ex  docker-php-ext-configure zip
-RUN set -ex docker-php-ext-enable intl xml pdo pdo_mysql exif gd soap zip opcache bcmath
+RUN set -ex ;\
+docker-php-ext-enable \
+intl \
+xml \
+pdo \
+pdo_mysql \
+exif \
+gd \
+soap \
+zip \
+opcache \
+bcmath
 
 RUN set -ex ;\
     a2enmod rewrite;\
