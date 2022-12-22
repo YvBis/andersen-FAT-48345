@@ -18,11 +18,4 @@ class UserController extends Controller
             'token' => $token->accessToken,
         ],201);
     }
-
-    public function test()
-    {
-        return new JsonResponse([
-            'message' => 'ok'
-        ], 200);
-    }
 }

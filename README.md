@@ -10,20 +10,39 @@
     cd andersen-FAT-48345
 ```
 
-3. Start application
+3. Copy .env
 ```shell
-    docker-compose up -d
+    co .env.example .env
 ```
-4. Set permissions
+4. Install sail
 ```shell 
-    docker exec php-apache chmod -R 755 bootstrap/cache
+     php artisan sail:install
 ```
-```shell 
-    docker exec php-apache chmod -R 755 storage
-```
-5. Install composer dependencies
+MariaDB as database recommended.
+5. Make sail shortcut
 ```shell
-   docker exec php-apache composer install
-```  
-1. Go to
-`http://127.0.0.1:8080`
+   alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+6. Start container
+```shell
+    ./vendor/bin/sail up
+```
+7. Setup packages
+```shell
+    sail composer install
+```
+8. Run migrations
+```shell
+    sail php artisan migrate
+```
+9. Generate keys
+```shell
+    sail php artisan key:generate
+```
+10. Set up passport
+```shell
+    sail php artisan passport:install
+```
+The app runs on localhost:80.
+
+

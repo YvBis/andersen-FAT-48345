@@ -15,6 +15,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/users', [\App\Http\Controllers\api\UserController::class, 'register']);
-
-Route::get('/users', [\App\Http\Controllers\api\UserController::class, 'test'])
-    ->middleware('auth:api');
