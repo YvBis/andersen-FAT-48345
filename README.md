@@ -19,6 +19,7 @@
      php artisan sail:install
 ```
 MariaDB as database recommended.
+
 5. Make sail shortcut
 ```shell
    alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
