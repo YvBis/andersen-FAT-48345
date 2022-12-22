@@ -7,10 +7,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\PersonalAccessTokenResult;
 
-class RegisterUserService implements Interfaces\RegisterUser
+class AppUserService implements Interfaces\UserService
 {
 
-    public function create(RegisterUserDTO $registerUserDTO): PersonalAccessTokenResult
+    public function createUser(RegisterUserDTO $registerUserDTO): PersonalAccessTokenResult
     {
         $user = new User();
         $user->email = $registerUserDTO->getEmail();

@@ -4,18 +4,22 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Services\RegisterUserService;
+use App\Services\AppUserService;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function register(RegisterRequest $request, RegisterUserService $registerUser): JsonResponse
+    public function __construct(
+        public AppUserService $userService
+    ){}
+    public function register(RegisterRequest $request): JsonResponse
     {
         $registerUserDto = $request->getRegisterUserDTO();
-        $token = $registerUser->create($registerUserDto);
+        $token = $this->userService->createUser($registerUserDto);
 
         return new JsonResponse([
             'token' => $token->accessToken,
-        ],201);
+        ], Response::HTTP_CREATED);
     }
 }
