@@ -23,7 +23,7 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => '123456',
         ];
 
-        $response = $this->postJson('http://localhost/api/users', $userData);
+        $response = $this->postJson('api/users', $userData);
         $response->assertStatus(Response::HTTP_CREATED);
         $response->assertJsonStructure([
             'token',
@@ -38,7 +38,7 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => '123456',
         ];
 
-        $response = $this->postJson('http://localhost/api/users', $userData);
+        $response = $this->postJson('api/users', $userData);
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonValidationErrorFor('email');
     }
@@ -50,7 +50,7 @@ class UserRegistrationTest extends TestCase
             'password' => '123456',
             'password_confirmation' => '126',
         ];
-        $response = $this->postJson('http://localhost/api/users', $userData);
+        $response = $this->postJson('api/users', $userData);
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonValidationErrorFor('password');
 
@@ -64,10 +64,10 @@ class UserRegistrationTest extends TestCase
             'password_confirmation' => '123456',
         ];
 
-        $response = $this->postJson('http://localhost/api/users', $userData);
+        $response = $this->postJson('api/users', $userData);
         $response->assertStatus(Response::HTTP_CREATED);
 
-        $secondResponse = $this->postJson('http://localhost/api/users', $userData);
+        $secondResponse = $this->postJson('api/users', $userData);
         $secondResponse->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $secondResponse->assertJsonValidationErrorFor('email');
     }
