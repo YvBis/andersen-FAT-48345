@@ -12,7 +12,7 @@
 
 3. Copy .env
 ```shell
-    co .env.example .env
+    cp .env.example .env
 ```
 4. Install sail
 ```shell 
