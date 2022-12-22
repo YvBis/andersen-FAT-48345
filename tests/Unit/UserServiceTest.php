@@ -20,7 +20,6 @@ class UserServiceTest extends TestCase
     {
         parent::setUp();
         $this->userService = $this->app->make(UserService::class);
-        $this->artisan('passport:install');
     }
 
     public function testUserCreation(): void

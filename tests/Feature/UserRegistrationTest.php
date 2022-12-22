@@ -13,7 +13,6 @@ class UserRegistrationTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->artisan('passport:install');
     }
 
     public function testUserRegistration(): void
