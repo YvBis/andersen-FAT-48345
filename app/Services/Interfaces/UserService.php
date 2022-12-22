@@ -5,7 +5,7 @@ namespace App\Services\Interfaces;
 use App\DTOs\RegisterUserDTO;
 use Laravel\Passport\PersonalAccessTokenResult;
 
-interface RegisterUser
+interface UserService
 {
-    public function create( RegisterUserDTO $registerUserDTO): PersonalAccessTokenResult;
+    public function createUser(RegisterUserDTO $registerUserDTO): PersonalAccessTokenResult;
 }
