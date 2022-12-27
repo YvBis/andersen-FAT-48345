@@ -50,10 +50,10 @@ class UserRegistrationTest extends TestCase
             'password' => '123456',
             'password_confirmation' => '126',
         ];
+
         $response = $this->postJson('api/users', $userData);
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonValidationErrorFor('password');
-
     }
 
     public function testDuplicateEmailValidation(): void
